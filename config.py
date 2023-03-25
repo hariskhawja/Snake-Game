@@ -3,7 +3,7 @@ Config = {
         'caption' : 'Snake',
         'width' : 800,
         'height' : 600,
-        'fps' : 120,
+        'fps' : 30,
         'bumperSize' : 20,
         'font' : "Arial",
         'fontSize' : 17

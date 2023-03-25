@@ -1,6 +1,6 @@
 import pygame
-from config import Config
 import game
+from config import Config
 
 pygame.init()
 pygame.display.set_caption("Snake Game")
