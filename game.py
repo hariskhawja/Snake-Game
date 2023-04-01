@@ -9,14 +9,26 @@ def game(screen):
     snakeBody = snake.Snake()
     appleBody = apple.Apple()
     change = [0, 0]
+    alive = True
+
+    Config['snake']['color'] == Config['colors']['blue']
 
     while quitVar:
         screen.fill([0, 0, 0])
         
         snakeBody.snakeDraw(screen)
-        snakeBody.move(change[0], change[1])
-
         appleBody.appleDraw(screen)
+
+        if alive: snakeBody.snakeMove(change[0], change[1])
+
+        if snakeBody.body[0] == appleBody.pos:
+            snakeBody.snakeExtend()
+            appleBody.appleGen()
+
+        for i in range(1, len(snakeBody.body)):
+            if snakeBody.body[0] == snakeBody.body[i]: 
+                alive = False
+                Config['snake']['color'] = Config['colors']['red']
 
         for event in pygame.event.get():
             if event.type == pygame.KEYDOWN:

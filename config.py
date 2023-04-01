@@ -11,7 +11,8 @@ Config = {
     'snake' : {
         'height' : 10,
         'width' : 10,
-        'speed' : 10
+        'speed' : 10,
+        'color' : (60, 100, 150)
     },
     'apple' : {
         'width' : 10,
