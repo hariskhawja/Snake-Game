@@ -3,9 +3,9 @@ import pygame
 
 class Snake:
     def __init__(self):
-        self.body = [[400, 300], [410, 300], [420, 300], [430, 300], [440, 300], [450, 300]]
+        self.body = [[400, 300]]
         self.extension = []
-        self.length = 6
+        self.length = 1
 
     def snakeDraw(self, screen):
         for i in self.body:
@@ -20,3 +20,13 @@ class Snake:
     def snakeExtend(self):
         self.body.append(self.extension)
         self.length += 1
+
+    def snakeCollideWall(self):
+        if self.body[0][0] < 0 or self.body[0][0] > 800 or self.body[0][1] < 0 or self.body[0][1] > 600: return False
+
+        else: return True
+    
+    def snakeReset(self):
+        self.body = [[400, 300]]
+        self.extension = []
+        self.length = 1

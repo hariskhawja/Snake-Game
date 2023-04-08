@@ -6,7 +6,7 @@ Config = {
         'fps' : 30,
         'bumperSize' : 20,
         'font' : "Arial",
-        'fontSize' : 17
+        'fontSize' : 22
     },
     'snake' : {
         'height' : 10,
