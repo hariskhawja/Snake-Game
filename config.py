@@ -6,7 +6,8 @@ Config = {
         'fps' : 30,
         'bumperSize' : 20,
         'font' : "Arial",
-        'fontSize' : 22
+        'fontSize' : 22,
+        'titleSize' : 32
     },
     'snake' : {
         'height' : 10,
@@ -20,10 +21,10 @@ Config = {
     },
     'colors' : {
         'white' : (255, 255, 255),
-        'black' : (70, 65, 65),
+        'yellow' : (150, 150, 0),
         'appleRed' : (255, 0, 0),
-        'red' : (200, 95, 30),
-        'green' : (160, 180, 50),
+        'red' : (150, 0, 0),
+        'green' : (10, 100, 10),
         'blue' : (60, 100, 150)
     }
 }

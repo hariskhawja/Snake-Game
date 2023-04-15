@@ -17,20 +17,37 @@ def gameReset(snakeBody):
     Config['snake']['color'] = Config['colors']['blue']
     return 0, [0, 0]
 
-def menu(screen, font):
+def menu(screen, font, titleFont):
     quitVar = True
     fpsClock = pygame.time.Clock()
+
+    #textX = lambda x : x + 20
+    textY = lambda y : y + 15
 
     while quitVar:
         screen.fill([0, 0, 0])
 
-        textDisplay("Welcome to Snake Game", font, [400, 200], screen, "c")
-        start = pygame.draw.rect(screen, [255, 255, 255], (400, 300, 100, 100), width=1)
+        textDisplay("Welcome to Snake Game", titleFont, [400, 200], screen, "c")
+
+        easy = pygame.draw.rect(screen, Config['colors']['green'], (350, 280, 100, 30))
+        textDisplay("EASY", font, [400, textY(280)], screen, "c")
+
+        mid = pygame.draw.rect(screen, Config['colors']['yellow'], (350, 330, 100, 30))
+        textDisplay("MID", font, [400, textY(330)], screen, "c")
+
+        hard = pygame.draw.rect(screen, Config['colors']['red'], (350, 380, 100, 30))
+        textDisplay("HARD", font, [400, textY(380)], screen, "c")
 
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
-                if start.collidepoint(pygame.mouse.get_pos()):
+                if easy.collidepoint(pygame.mouse.get_pos()):
                     return 1
+                
+                if mid.collidepoint(pygame.mouse.get_pos()):
+                    return 2
+                
+                if hard.collidepoint(pygame.mouse.get_pos()):
+                    return 3
 
             if event.type == pygame.QUIT:
                 quitVar = False
