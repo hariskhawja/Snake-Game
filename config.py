@@ -7,7 +7,8 @@ Config = {
         'bumperSize' : 20,
         'font' : "Arial",
         'fontSize' : 22,
-        'titleSize' : 32
+        'titleSize' : 32,
+        'score' : 100
     },
     'snake' : {
         'height' : 10,

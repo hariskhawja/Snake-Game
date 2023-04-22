@@ -3,6 +3,9 @@ import snake
 import apple
 from config import Config
 
+textX = lambda x : x + 20
+textY = lambda y : y + 15
+
 def textDisplay(text, font, coordinates, screen, pos):
     text = font.render(text, True, [255, 255, 255])
 
@@ -21,9 +24,6 @@ def menu(screen, font, titleFont):
     quitVar = True
     fpsClock = pygame.time.Clock()
 
-    #textX = lambda x : x + 20
-    textY = lambda y : y + 15
-
     while quitVar:
         screen.fill([0, 0, 0])
 
@@ -38,16 +38,22 @@ def menu(screen, font, titleFont):
         hard = pygame.draw.rect(screen, Config['colors']['red'], (350, 380, 100, 30))
         textDisplay("HARD", font, [400, textY(380)], screen, "c")
 
+        credits = pygame.draw.rect(screen, Config['colors']['blue'], (350, 430, 100, 30))
+        textDisplay("CREDITS", font, [400, textY(430)], screen, "c")
+
         for event in pygame.event.get():
             if event.type == pygame.MOUSEBUTTONDOWN:
                 if easy.collidepoint(pygame.mouse.get_pos()):
-                    return 1
+                    return 1, 30
                 
                 if mid.collidepoint(pygame.mouse.get_pos()):
-                    return 2
+                    return 1, 45
                 
                 if hard.collidepoint(pygame.mouse.get_pos()):
-                    return 3
+                    return 1, 60
+                
+                if credits.collidepoint(pygame.mouse.get_pos()):
+                    return 4, 30
 
             if event.type == pygame.QUIT:
                 quitVar = False
@@ -63,7 +69,7 @@ def game(screen, font):
     change = [0, 0]
     score = 0
     alive = True
-    #Config['snake']['color'] = Config['colors']['blue']
+    Config['snake']['color'] = Config['colors']['blue']
 
     while quitVar:
         screen.fill([0, 0, 0])
@@ -84,7 +90,7 @@ def game(screen, font):
         if snakeBody.body[0] == appleBody.pos:
             snakeBody.snakeExtend()
             appleBody.appleGen()
-            score += 100
+            score += Config['game']['score']
 
         for i in range(1, len(snakeBody.body)):
             if snakeBody.body[0] == snakeBody.body[i]: 
@@ -108,3 +114,30 @@ def game(screen, font):
 
         pygame.display.update()
         fpsClock.tick(Config['game']['fps'])
+
+def credits(screen, font, titleFont):
+    quitVar = True
+    fpsClock = pygame.time.Clock()
+
+    while quitVar:
+        screen.fill([0, 0, 0])
+        textDisplay("Credits", titleFont, (50, 100), screen, "l")
+        textDisplay("Designer: Haris Khawja", font, (50, 150), screen, "l")
+        textDisplay("Supervisors: Coach Asad, Coach Saeesh", font, (50, 200), screen, "l")
+        textDisplay("Company: Zebra Robotics", font, (50, 250), screen, "l")
+        textDisplay("Language: Python 3, Pygame", font, (50, 300), screen, "l")
+        textDisplay("Completion Date: ???", font, (50, 350), screen, "l")
+
+        menu = pygame.draw.rect(screen, Config['colors']['blue'], (350, 500, 100, 30))
+        textDisplay("MENU", font, [400, textY(500)], screen, "c")
+
+        for event in pygame.event.get():
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                if menu.collidepoint(pygame.mouse.get_pos()): return 0
+
+            if event.type == pygame.QUIT:
+                quitVar = False
+
+        pygame.display.update()
+        fpsClock.tick(Config['game']['fps'])
+
